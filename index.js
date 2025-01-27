@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
 const app = express();
 
 // Grab env vars (with defaults or empty strings if not provided)
-const mongoHost = process.env.MONGODB_HOST || 'localhost';
-const mongoPort = process.env.MONGODB_PORT || '27017';
-const mongoDB   = process.env.MONGODB_DB   || 'myfruitsdb';
-const mongoUser = process.env.MONGODB_USER || '';
-const mongoPass = process.env.MONGODB_PASS || '';
+const mongoHost = process.env.MONGODB_HOST;
+const mongoPort = process.env.MONGODB_PORT;
+const mongoDB   = process.env.MONGODB_DB;
+const mongoUser = process.env.MONGODB_USER;
+const mongoPass = process.env.MONGODB_PASS;
 
 // Build the connection string
 // If you have credentials, embed them in the URI; otherwise just skip user/pass.
