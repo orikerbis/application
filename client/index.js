@@ -3,47 +3,50 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-// 1. Grab env vars
-const mongoHost = process.env.MONGODB_HOST;
-const mongoPort = process.env.MONGODB_PORT;
-const mongoDB   = process.env.MONGODB_DB;
-const mongoUser = process.env.MONGODB_USER;
-const mongoPass = process.env.MONGODB_PASS;
+// 1. Grab Environment Variables with Defaults
+const mongoHost = process.env.MONGODB_HOST ;
+const mongoPort = process.env.MONGODB_PORT ;
+const mongoDB   = process.env.MONGODB_DB ;
+const mongoUser = process.env.MONGODB_USER ;
+const mongoPass = process.env.MONGODB_PASS ; // Replace with your actual password or use environment variables securely
 
-// 2. Build the connection string
+// 2. Build the Connection String with Proper Encoding
 let mongoUri;
 if (mongoUser && mongoPass) {
-  mongoUri = `mongodb://${mongoUser}:${encodeURIComponent(mongoPass)}@${mongoHost}:${mongoPort}/${mongoDB}?authSource=admin`;
+  // Encode the password to handle special characters
+  const encodedPass = encodeURIComponent(mongoPass);
+  mongoUri = `mongodb://${mongoUser}:${encodedPass}@${mongoHost}:${mongoPort}/${mongoDB}?authSource=admin`;
 } else {
   mongoUri = `mongodb://${mongoHost}:${mongoPort}/${mongoDB}`;
 }
 
 console.log('Mongo URI:', mongoUri);
 
-// 3. Define seed data inline
+// 3. Define Seed Data Inline (Without `_id`)
 const seedData = [
-  { "_id": 1, "name": "apples",   "qty": 5,  "rating": 3 },
-  { "_id": 2, "name": "bananas",  "qty": 7,  "rating": 1, "microsieverts": 0.1 },
-  { "_id": 3, "name": "oranges",  "qty": 6,  "rating": 2 },
-  { "_id": 4, "name": "avocados", "qty": 3,  "rating": 5 }
+  { "name": "apples",   "qty": 5,  "rating": 3 },
+  { "name": "bananas",  "qty": 7,  "rating": 1, "microsieverts": 0.1 },
+  { "name": "oranges",  "qty": 6,  "rating": 2 },
+  { "name": "avocados", "qty": 3,  "rating": 5 }
 ];
 
-// 4. Define the schema/model ONCE at the top level
+// 4. Define the Schema and Model Once at the Top Level
 const fruitSchema = new mongoose.Schema({
-  name: String,
-  qty: Number,
-  rating: Number,
-  microsieverts: Number
+  name: { type: String, required: true, unique: true },
+  qty: { type: Number, required: true },
+  rating: { type: Number, required: true },
+  microsieverts: { type: Number, default: 0 }
 });
+
 const Fruit = mongoose.model('Fruit', fruitSchema);
 
-// 5. Connect to MongoDB and seed if empty
+// 5. Connect to MongoDB and Seed if Collection is Empty
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(async () => {
     console.log('Connected to MongoDB!');
 
     try {
-      // Check if 'fruits' collection is empty
+      // Check if the 'fruits' collection is empty
       const count = await Fruit.estimatedDocumentCount();
       if (count === 0) {
         const inserted = await Fruit.insertMany(seedData);
@@ -57,7 +60,7 @@ mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
   })
   .catch(err => console.error('Error connecting to MongoDB:', err));
 
-// 6. Simple route to show how many apples
+// 6. Define the Route to Display Number of Apples
 app.get('/', async (req, res) => {
   try {
     const apples = await Fruit.findOne({ name: 'apples' });
@@ -67,12 +70,12 @@ app.get('/', async (req, res) => {
       <p>Number of apples in DB: <strong>${count}</strong></p>
     `);
   } catch (error) {
-    console.error(error);
+    console.error('Error fetching apples:', error);
     res.status(500).send('Error fetching data.');
   }
 });
 
-// 7. Start server
+// 7. Start the Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Node app listening on port ${PORT}`);
