@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fruits App</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome to the Fruits App!</h1>
+    <p>Number of apples in DB: <span class="count"><%= count %></span></p>
+    
+    <h2>All Fruits</h2>
+    <div class="fruit-stats">
+      <% fruits.forEach(function(fruit) { %>
+        <div class="fruit-item">
+          <h3><%= fruit.name.charAt(0).toUpperCase() + fruit.name.slice(1) %></h3>
+          <p>Quantity: <%= fruit.qty %></p>
+          <p>Rating: <%= fruit.rating %></p>
+          <% if (fruit.microsieverts) { %>
+            <p>Microsieverts: <%= fruit.microsieverts %></p>
+          <% } %>
+        </div>
+      <% }); %>
+    </div>
+
+    <button onclick="refreshPage()">Refresh</button>
+  </div>
+
+  <script>
+    function refreshPage() {
+      location.reload();
+    }
+  </script>
+</body>
+</html>
