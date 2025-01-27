@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-    background-color: #e0f7fa; /* Light cyan background */
+    background-color: #f0f8ff; /* AliceBlue - a pleasant light blue background */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     text-align: center;
     padding-top: 50px;
@@ -9,98 +9,29 @@ body {
   
   /* Container */
   .container {
-    background-color: #ffffff; /* White background for container */
+    background-color: #ffffff; /* White background for the container */
     border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
     display: inline-block;
     padding: 40px;
-    max-width: 800px;
+    max-width: 600px;
   }
   
   /* Heading */
   h1 {
-    color: #ff5722; /* Deep orange */
+    color: #ff5722; /* Deep orange color for the heading */
     font-size: 2.5em;
     margin-bottom: 20px;
   }
   
-  h2 {
-    color: #388e3c; /* Darker green */
-    margin-top: 30px;
-  }
-  
-  h3 {
-    color: #00796b; /* Teal */
-  }
-  
   /* Paragraph */
   p {
-    font-size: 1.2em;
-    color: #333333; /* Dark gray */
+    font-size: 1.5em;
+    color: #333333; /* Dark gray color for the text */
   }
   
   /* Count Styling */
   .count {
     font-weight: bold;
-    color: #4caf50; /* Green */
-  }
-  
-  /* Fruit Stats */
-  .fruit-stats {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 20px 0;
-  }
-  
-  .fruit-item {
-    background-color: #f1f8e9; /* Light green */
-    border: 2px solid #c5e1a5; /* Green border */
-    border-radius: 10px;
-    padding: 20px;
-    margin: 10px;
-    width: 200px;
-    box-sizing: border-box;
-    transition: transform 0.2s;
-  }
-  
-  .fruit-item:hover {
-    transform: scale(1.05);
-  }
-  
-  .fruit-item h3 {
-    margin-bottom: 10px;
-  }
-  
-  .fruit-item p {
-    margin: 5px 0;
-    color: #555555; /* Medium gray */
-  }
-  
-  /* Button Styling */
-  button {
-    background-color: #0288d1; /* Light blue */
-    color: white;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #0277bd; /* Darker blue */
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 600px) {
-    .fruit-stats {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .fruit-item {
-      width: 80%;
-    }
+    color: #4caf50; /* Green color for the count */
   }
