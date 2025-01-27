@@ -1,0 +1,85 @@
+name: CI/CD Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+
+jobs:
+
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write 
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Configure AWS Credentials 
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build and push frontend image
+        env:
+            ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
+            ECR_REPO: ${{ secrets.ECR_REPO }}
+            IMAGE_TAG: ${{ github.sha }} 
+        run: |
+          docker buildx build --platform linux/amd64 --push -t ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPO }}:${{ env.IMAGE_TAG }} -f ./client/Dockerfile ./client
+
+  
+#   update-values:
+#     runs-on: ubuntu-latest
+#     needs: [build-and-push]
+
+#     steps:
+#       - name: Checkout GitOps repository
+#         uses: actions/checkout@v2
+#         with:
+#           repository: orikerbis/employee-gitops
+#           token: ${{ secrets.ACCESS_TOKEN }}
+#           path: employee-gitops
+#           ref: main
+
+#       - name: Install yq
+#         run: |
+#           sudo apt-get update
+#           sudo apt-get install -y wget
+#           wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O /usr/local/bin/yq
+#           sudo chmod +x /usr/local/bin/yq
+
+#       - name: Update image tag in values.yaml
+#         run: |
+#           cd employee-gitops/environments/dev
+#           yq e '.server.image.tag = "${{ github.sha }}"' -i values.yaml
+#           yq e '.client.image.tag = "${{ github.sha }}"' -i values.yaml
+
+#       - name: check changes
+#         run: cat employee-gitops/environments/dev/values.yaml
+
+#       - name: Commit and push changes
+#         run: |
+#           cd employee-gitops
+#           git config user.name "orikerbis"
+#           git config user.email "orikerbis@gmail.com"  
+#           git add .
+#           git commit -m "Update backend image to ${{ github.sha }}"
+#           git push
+
+
+
+
+
+              
