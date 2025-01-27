@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: fruits-app-service
+spec:
+  selector:
+    app: myapp
+  type:  {{ .Values.app.service.type }}
+  ports:
+   - port:  {{ .Values.app.service.port }}
+     targetPort:  {{ .Values.app.service.targetPort }}

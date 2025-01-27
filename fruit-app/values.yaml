@@ -1,0 +1,14 @@
+global:
+  imagePullPolicy: IfNotPresent
+  namespace: employee-app
+  secretName: "app/dev/mongodb-credentials"
+
+app:
+  image:
+    repository: 825765414083.dkr.ecr.us-east-2.amazonaws.com/dev/app
+    tag: 9aeff10456625966cfdde69d1bab267bad2ec61a
+  service:
+    type: NodePort
+    port: 3000
+    targetPort: 3000
+  replicaCount: 1

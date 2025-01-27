@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-// Grab env vars (with defaults or empty strings if not provided)
+// Grab env vars
 const mongoHost = process.env.MONGODB_HOST;
 const mongoPort = process.env.MONGODB_PORT;
 const mongoDB   = process.env.MONGODB_DB;
@@ -11,7 +11,6 @@ const mongoUser = process.env.MONGODB_USER;
 const mongoPass = process.env.MONGODB_PASS;
 
 // Build the connection string
-// If you have credentials, embed them in the URI; otherwise just skip user/pass.
 let mongoUri;
 if (mongoUser && mongoPass) {
   mongoUri = `mongodb://${mongoUser}:${mongoPass}@${mongoHost}:${mongoPort}/${mongoDB}?authSource=admin`;
@@ -21,24 +20,57 @@ if (mongoUser && mongoPass) {
 
 console.log('Mongo URI:', mongoUri);
 
+// Define seed data inline
+const seedData = [
+  { "_id": 1, "name": "apples",   "qty": 5, "rating": 3 },
+  { "_id": 2, "name": "bananas",  "qty": 7, "rating": 1, "microsieverts": 0.1 },
+  { "_id": 3, "name": "oranges",  "qty": 6, "rating": 2 },
+  { "_id": 4, "name": "avocados", "qty": 3, "rating": 5 }
+];
+
 // Connect to MongoDB
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB!'))
+  .then(() => {
+    console.log('Connected to MongoDB!');
+
+    // Define the Fruit model here (so it's available after connect)
+    const fruitSchema = new mongoose.Schema({
+      name: String,
+      qty: Number,
+      rating: Number,
+      microsieverts: Number
+    });
+    const Fruit = mongoose.model('Fruit', fruitSchema);
+
+    // Check if the 'fruits' collection is empty; if so, insert seed data
+    Fruit.estimatedDocumentCount()
+      .then(count => {
+        if (count === 0) {
+          Fruit.insertMany(seedData)
+            .then(inserted => {
+              console.log(`Seeded ${inserted.length} fruits in the DB.`);
+            })
+            .catch(err => console.error('Error seeding data:', err));
+        } else {
+          console.log(`Fruits collection already has data (count = ${count}).`);
+        }
+      })
+      .catch(err => console.error('Error counting documents:', err));
+  })
   .catch(err => console.log('Error connecting to MongoDB:', err));
 
-// Define a Fruit model (just for reading/writing the data)
+// Define the Fruit model at top-level as well (so we can use it in routes directly)
 const fruitSchema = new mongoose.Schema({
   name: String,
   qty: Number,
   rating: Number,
   microsieverts: Number
 });
-
 const Fruit = mongoose.model('Fruit', fruitSchema);
 
+// Simple route to show how many apples
 app.get('/', async (req, res) => {
   try {
-    // Query the DB for apples
     const apples = await Fruit.findOne({ name: 'apples' });
     const count = apples ? apples.qty : 0;
     res.send(`<h1>Hello World with a little apples :)</h1>

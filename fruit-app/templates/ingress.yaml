@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fruits-app-ingress
+  namespace: fruits-app 
+  annotations:
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: app.kerbis.online
+    http:
+      paths:
+      - path: "/"
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: fruits-app-service
+            port:
+              number: {{ .Values.app.service.port }}
