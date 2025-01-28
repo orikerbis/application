@@ -84,7 +84,12 @@ app.get('/', async (req, res) => {
 });
 
 // 11. Start the Server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Node app listening on port ${PORT}`);
-});
+if (require.main === module) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+// Export the app for testing
+module.exports = app;
