@@ -62,7 +62,7 @@ jobs:
 
       - name: Update image tag in values.yaml
         run: |
-          cd employee-gitops/environments/dev
+          cd gitops-fruitsApp/environments/dev
           yq e '.app.image.tag = "${{ github.sha }}"' -i values.yaml
 
       - name: check changes
