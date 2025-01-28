@@ -4,6 +4,8 @@ This repository contains the codebase, configuration, and CI/CD setup for the **
 
 ---
 
+---![web-image](https://github.com/user-attachments/assets/d41dab66-c822-4945-9de8-4be10fb106c8)
+
 ## Project Structure
 
 ```plaintext
@@ -63,7 +65,6 @@ This repository is part of a larger project that consists of three repositories:
 
 These repositories work together to provide a fully automated and scalable solution for deploying and managing the Fruits App.
 
----![web-image](https://github.com/user-attachments/assets/d41dab66-c822-4945-9de8-4be10fb106c8)
 
 
 
