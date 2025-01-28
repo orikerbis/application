@@ -47,4 +47,22 @@ This repository contains the codebase, configuration, and CI/CD setup for the **
 
 ---
 
+## About the Project
+
+This repository is part of a larger project that consists of three repositories:
+
+1. **Fruits App (This Repository)**:
+   - Contains the application code, Helm chart for Kubernetes deployment, and a CI/CD workflow for automating the build and deployment processes.
+
+2. **Terraform Infrastructure as Code (IaC)**:
+   - Contains Terraform scripts for provisioning the cloud infrastructure required to run the Fruits App (e.g., EKS cluster, networking, etc.).
+
+3. **GitOps Repository**:
+   - Manages Kubernetes deployments using a GitOps approach.
+   - Tracks the state of the deployed Helm chart and updates the `values.yaml` file with new image tags and configurations.
+
+These repositories work together to provide a fully automated and scalable solution for deploying and managing the Fruits App.
+
+---
+
 
