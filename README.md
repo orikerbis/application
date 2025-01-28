@@ -29,12 +29,22 @@ This repository contains the codebase, configuration, and CI/CD setup for the **
     │   └── service.yaml
     └── values.yaml
 ```
-# Features
+---
+## Features
 
-	•	Client Application: A JavaScript-based app housed in the client/ directory, containerized using Docker.
-	•	Helm Chart: A Kubernetes Helm chart (fruits-app) for managing deployment resources.
-	•	CI/CD Workflow:
-	•	Testing: Ensures code quality and application reliability.
-	•	Image Building: Builds a Docker image for the client app.
-	•	Image Push: Pushes the Docker image to an Amazon ECR registry.
-	•	Helm Chart Update: Updates the values.yaml file in another repository with the new image tag using the GitHub SHA.
+1. **Client Application**:
+   - Written in JavaScript.
+   - Dockerized using a `Dockerfile` for containerized deployment.
+
+2. **Helm Chart**:
+   - Located in the `fruits-app/` directory.
+   - Contains Kubernetes resource templates for deploying the application.
+
+3. **CI/CD Workflow**:
+   - Automates testing, building, and deployment of the app.
+   - Pushes Docker images to an **Amazon ECR** registry.
+   - Updates the image tag in a `values.yaml` file in another repository.
+
+---
+
+
