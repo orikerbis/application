@@ -44,7 +44,7 @@ This repository contains the codebase, configuration, and CI/CD setup for the **
 
 3. **Unit Tests**:
    - The repository includes unit tests to validate application functionality and prevent regressions.
-   - Tests are written using a testing framework like **Jest** or similar.
+   - Tests are written using **Jest**.
 
 4. **Dockerized Environment**:
    - The application is containerized using Docker, making it easy to deploy and run in any environment.
@@ -52,7 +52,7 @@ This repository contains the codebase, configuration, and CI/CD setup for the **
 
 5. **CI/CD Pipeline**:
    - A GitHub Actions workflow automates the build, test, and deployment process.
-   - Each commit triggers unit tests, builds the application, and pushes the Docker image to **Amazon ECR**.
+   - Each pull request triggers unit tests, builds the application, and pushes the Docker image to **Amazon ECR**.
 
 ---
 
