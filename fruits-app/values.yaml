@@ -1,5 +1,5 @@
 global:
-  secretName: "123"
+  secretName: "mongo"
 
 app:
   image:
@@ -9,4 +9,4 @@ app:
     type: NodePort
     port: 3000
     targetPort: 3000
-  replicaCount: 1
+  replicaCount: 2
