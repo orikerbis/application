@@ -1,4 +1,4 @@
-# Fruits App Repository
+# Fruits App Application
 
 This repository contains the codebase, configuration, and CI/CD setup for the **Fruits App** project. The application is built with JavaScript, packaged using Docker, and deployed on Kubernetes with Helm charts. The CI/CD process automates testing, building, and deploying the application.
 
@@ -34,18 +34,25 @@ This repository contains the codebase, configuration, and CI/CD setup for the **
 ---
 ## Features
 
-1. **Client Application**:
-   - Written in JavaScript.
-   - Dockerized using a `Dockerfile` for containerized deployment.
+1. **CSS Styling**:
+   - The application is styled using **CSS** for a modern and responsive user interface.
+   - Custom stylesheets are used to ensure consistency and maintainability.
 
-2. **Helm Chart**:
-   - Located in the `fruits-app/` directory.
-   - Contains Kubernetes resource templates for deploying the application.
+2. **MongoDB Integration**:
+   - The application connects to a **MongoDB** container for data storage.
+   - The connection string is managed securely using environment variables injected by **External Secrets** from **AWS Secrets Manager**.
 
-3. **CI/CD Workflow**:
-   - Automates testing, building, and deployment of the app.
-   - Pushes Docker images to an **Amazon ECR** registry.
-   - Updates the image tag in a `values.yaml` file in another repository.
+3. **Unit Tests**:
+   - The repository includes unit tests to validate application functionality and prevent regressions.
+   - Tests are written using a testing framework like **Jest** or similar.
+
+4. **Dockerized Environment**:
+   - The application is containerized using Docker, making it easy to deploy and run in any environment.
+   - The Dockerfile defines the build process and dependencies for the application.
+
+5. **CI/CD Pipeline**:
+   - A GitHub Actions workflow automates the build, test, and deployment process.
+   - Each commit triggers unit tests, builds the application, and pushes the Docker image to **Amazon ECR**.
 
 ---
 
