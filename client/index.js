@@ -21,16 +21,11 @@ const mongoUser = process.env.MONGODB_USER;
 const mongoPass = process.env.MONGODB_PASS; // Replace securely
 
 // 5. Build the Connection String with Proper Encoding
-let mongoUri;
-if (mongoUser && mongoPass) {
-  // Encode the password to handle special characters
-  const encodedPass = encodeURIComponent(mongoPass);
-  mongoUri = `mongodb://${mongoUser}:${encodedPass}@${mongoHost}:${mongoPort}/${mongoDB}?authSource=admin`;
-} else {
-  mongoUri = `mongodb://${mongoHost}:${mongoPort}/${mongoDB}`;
-}
-
+// Construct the MongoDB URI without conditionals and without encoding the password
+const mongoUri = `mongodb://${mongoUser}:${mongoPass}@${mongoHost}:${mongoPort}/${mongoDB}?authSource=admin`;
 console.log('Mongo URI:', mongoUri);
+
+
 
 // 6. Define Seed Data Inline (Without `_id`)
 const seedData = [
