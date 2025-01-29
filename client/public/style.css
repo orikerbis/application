@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-  background-color: #f0f8ff; /* AliceBlue - a pleasant light blue background */
+  background-color: #f4f1de; /* Beige - a warm neutral background */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   padding-top: 50px;
@@ -9,9 +9,9 @@ body {
 
 /* Container */
 .container {
-  background-color: #ffffff; /* White background for the container */
+  background-color: #3d405b; /* Dark Blue-Gray for contrast */
   border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   display: inline-block;
   padding: 40px;
   max-width: 600px;
@@ -19,7 +19,7 @@ body {
 
 /* Heading */
 h1 {
-  color: #ff5722; /* Deep orange color for the heading */
+  color: #e07a5f; /* Coral - a warm, eye-catching heading color */
   font-size: 2.5em;
   margin-bottom: 20px;
 }
@@ -27,11 +27,11 @@ h1 {
 /* Paragraph */
 p {
   font-size: 1.5em;
-  color: #333333; /* Dark gray color for the text */
+  color: #f2cc8f; /* Soft Gold - a warm tone for the text */
 }
 
 /* Count Styling */
 .count {
   font-weight: bold;
-  color: #4caf50; /* Green color for the count */
+  color: #81b29a; /* Teal - a calm and cool contrast color */
 }
