@@ -1,5 +1,5 @@
 body {
-  background-color: #f4f1de; 
+  background-color: hsl(52, 96%, 48%); 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   padding-top: 50px;
@@ -7,7 +7,7 @@ body {
 }
 
 .container {
-  background-color: #3d405b; 
+  background-color: hsl(0, 0%, 97%); 
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   display: inline-block;
@@ -15,7 +15,7 @@ body {
   max-width: 600px;
 }
 h1 {
-  color: #e07a5f; 
+  color: hsl(274, 82%, 41%); 
   font-size: 2.5em;
   margin-bottom: 20px;
 }
@@ -23,12 +23,12 @@ h1 {
 
 p {
   font-size: 1.5em;
-  color: #f2cc8f; 
+  color: hsl(0, 0%, 49%); 
 }
 
 
 .count {
   font-weight: bold;
-  color: #81b29a; 
+  color: hsl(317, 42%, 65%); 
 }
 
