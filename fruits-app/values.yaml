@@ -1,5 +1,5 @@
 global:
-  secretName: "mongo"
+  secretName: "MongoDB-Credentials"
 
 app:
   image:
