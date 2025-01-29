@@ -18,7 +18,7 @@ spec:
         image: "{{ .Values.app.image.repository }}:{{ .Values.app.image.tag }}"
         envFrom:
           - secretRef:
-              name: "db-mongo-secrets"
+              name: "mongodb-secrets"
         resources:
           limits:
             memory: "128Mi"
