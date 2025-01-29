@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-  background-color: #e0f7fa; /* Light Cyan - a refreshing blue background */
+  background-color: #ecfae0; /* Light Cyan - a refreshing blue background */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   padding-top: 50px;
@@ -9,7 +9,7 @@ body {
 
 /* Container */
 .container {
-  background-color: #fff3e0; /* Light Apricot background for the container */
+  background-color: #e78f01; /* Light Apricot background for the container */
   border-radius: 15px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   display: inline-block;
@@ -19,7 +19,7 @@ body {
 
 /* Heading */
 h1 {
-  color: #8040ff; /* Vivid Pink for the heading */
+  color: #1402df; /* Vivid Pink for the heading */
   font-size: 2.5em;
   margin-bottom: 20px;
 }
@@ -33,5 +33,5 @@ p {
 /* Count Styling */
 .count {
   font-weight: bold;
-  color: #009688; /* Teal for a cool effect */
+  color: #960000; /* Teal for a cool effct */
 }
