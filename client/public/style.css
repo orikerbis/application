@@ -1,5 +1,5 @@
 body {
-  background-color: #e0f7fa;
+  background-color: #e0f7fa; /* Light Cyan - a refreshing blue background */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   padding-top: 50px;
@@ -7,26 +7,26 @@ body {
 }
 
 .container {
-  background-color: #fff3e0; 
+  background-color: #fff3e0; /* Light Apricot background for the container */
   border-radius: 15px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
   display: inline-block;
   padding: 40px;
   max-width: 600px;
 }
 
 h1 {
-  color: #8040ff; 
+  color: #8040ff; /* Vivid Pink for the heading */
   font-size: 2.5em;
   margin-bottom: 20px;
 }
 
 p {
   font-size: 1.5em;
-  color: #333333; 
+  color: #333333; /* Deep Gray for readability */
 }
 
 .count {
   font-weight: bold;
-  color: #009688; 
+  color: #009688; /* Teal for a cool effect */
 }
