@@ -4,30 +4,23 @@ const path = require('path');
 
 const app = express();
 
-// 1. Set EJS as the templating engine
 app.set('view engine', 'ejs');
 
-// 2. Specify the views directory
 app.set('views', path.join(__dirname, 'views'));
 
-// 3. Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 4. Grab Environment Variables with Defaults
 const mongoHost = process.env.MONGODB_HOST;
 const mongoPort = process.env.MONGODB_PORT;
 const mongoDB   = process.env.MONGODB_DB;
 const mongoUser = process.env.MONGODB_USER;
-const mongoPass = process.env.MONGODB_PASS; // Replace securely
+const mongoPass = process.env.MONGODB_PASS; 
 
-// 5. Build the Connection String with Proper Encoding
-// Construct the MongoDB URI without conditionals and without encoding the password
 const mongoUri = `mongodb://${mongoUser}:${mongoPass}@${mongoHost}:${mongoPort}/${mongoDB}?authSource=admin`;
 console.log('Mongo URI:', mongoUri);
 
 
 
-// 6. Define Seed Data Inline (Without `_id`)
 const seedData = [
   { "name": "apples",   "qty": 5,  "rating": 3 },
   { "name": "bananas",  "qty": 7,  "rating": 1, "microsieverts": 0.1 },
@@ -35,7 +28,6 @@ const seedData = [
   { "name": "avocados", "qty": 3,  "rating": 5 }
 ];
 
-// 7. Define the Schema and Model Once at the Top Level
 const fruitSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true, trim: true },
   qty: { type: Number, required: true, min: 0 },
@@ -45,10 +37,8 @@ const fruitSchema = new mongoose.Schema({
 
 const Fruit = mongoose.model('Fruit', fruitSchema);
 
-// 8. Handle Deprecation Warning by Setting `strictQuery`
-mongoose.set('strictQuery', true); // Set to false if preferred
+mongoose.set('strictQuery', true); 
 
-// 9. Connect to MongoDB and Seed if Collection is Empty
 mongoose.connect(mongoUri, { 
     useNewUrlParser: true, 
     useUnifiedTopology: true 
@@ -57,7 +47,6 @@ mongoose.connect(mongoUri, {
     console.log('Connected to MongoDB!');
 
     try {
-      // Check if the 'fruits' collection is empty
       const count = await Fruit.estimatedDocumentCount();
       if (count === 0) {
         const inserted = await Fruit.insertMany(seedData);
@@ -71,7 +60,6 @@ mongoose.connect(mongoUri, {
   })
   .catch(err => console.error('Error connecting to MongoDB:', err));
 
-// 10. Define the Route to Display Only the Apple Count
 app.get('/', async (req, res) => {
   try {
     const apples = await Fruit.findOne({ name: 'apples' });
@@ -83,7 +71,6 @@ app.get('/', async (req, res) => {
   }
 });
 
-// 11. Start the Server
 if (require.main === module) {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {
@@ -91,5 +78,4 @@ if (require.main === module) {
   });
 }
 
-// Export the app for testing
 module.exports = app;
