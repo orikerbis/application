@@ -1,5 +1,5 @@
 body {
-  background-color: hwb(188 2% 6%); 
+  background-color: hwb(188 11% 34%); 
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   padding-top: 50px;
@@ -29,6 +29,6 @@ p {
 
 .count {
   font-weight: bold;
-  color: hsl(317, 42%, 65%); 
+  color: hsl(318, 28%, 7%); 
 }
 
